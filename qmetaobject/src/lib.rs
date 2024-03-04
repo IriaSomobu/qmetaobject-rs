@@ -196,6 +196,7 @@ pub use tablemodel::*;
 
 pub mod connections;
 pub mod future;
+pub mod imageprovider;
 pub mod itemmodel;
 pub mod listmodel;
 pub mod log;

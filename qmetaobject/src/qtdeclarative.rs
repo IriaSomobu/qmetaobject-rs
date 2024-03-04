@@ -195,9 +195,9 @@ impl QmlEngine {
         })
     }
 
-    /// Calls [invokeMethod](https://doc.qt.io/qt-5/qmetaobject.html#invokeMethod) on first available root object 
+    /// Calls [invokeMethod](https://doc.qt.io/qt-5/qmetaobject.html#invokeMethod) on first available root object
     /// -- typicaly it is your Application Window.
-    /// 
+    ///
     /// Returns `None` if either `invokeMethod` returned `false` or there are no root object present.
     pub fn invoke_method(&mut self, name: QByteArray, args: &[QVariant]) -> Option<QVariant> {
         let args_size = args.len();
@@ -238,15 +238,11 @@ impl QmlEngine {
             return ret;
         });
 
-        return if result {
-            Some(return_arg)
-        } else {
-            None
-        }
+        return if result { Some(return_arg) } else { None };
     }
 
     /// This method is the same as [invoke_method] but does not capture or return function's return value
-    /// 
+    ///
     /// Returns `None` if either `invokeMethod` returned `false` or there are no root object present.
     pub fn invoke_method_noreturn(&mut self, name: QByteArray, args: &[QVariant]) -> Option<()> {
         let args_size = args.len();
@@ -264,7 +260,7 @@ impl QmlEngine {
             if (robjs.isEmpty()) {
                 return false;
             }
-            
+
             bool rz = false;
             #define INVOKE_METHOD(...) QMetaObject::invokeMethod(robjs.first(), name __VA_ARGS__);
             switch (args_size) {
@@ -284,11 +280,7 @@ impl QmlEngine {
             return rz;
         });
 
-        return if result {
-            Some(())
-        } else {
-            None
-        }        
+        return if result { Some(()) } else { None };
     }
 
     pub fn trim_component_cache(&self) {
@@ -302,7 +294,7 @@ impl QmlEngine {
             self->engine->clearComponentCache();
         })
     }
-    
+
     /// Give a QObject to the engine by wrapping it in a QJSValue
     ///
     /// This will create the C++ object.
